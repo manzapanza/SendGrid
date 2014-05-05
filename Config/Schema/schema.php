@@ -9,7 +9,7 @@ class sendGridSchema extends CakeSchema {
         return true;
     }
 
-    var $sendgrid_incoming_emails => array(
+    public $sendgrid_incoming_emails = array(
         'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'primary'),
         'headers' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
         'text' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
