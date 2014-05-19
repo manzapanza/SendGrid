@@ -152,6 +152,7 @@ class SendGridControllerTest extends ControllerTestCase {
             )
         );
 
+        // Example Test Your Integration from SendGrid Event Notification Settings
 
         $data = '[{
             "email": "john.doe@sendgrid.com",
