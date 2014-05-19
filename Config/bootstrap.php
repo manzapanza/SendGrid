@@ -21,3 +21,17 @@
  */
 
     // Configure::write('SendGrid.findUniqueArguments', array('field1', 'field2'));
+
+/**
+ * Log input posted data
+ */
+
+    // CakeLog::config('sendgrid_event_webhook', array(
+    //     'engine' => 'FileLog',
+    //     'types' => array('info'),
+    //     'scopes' => array('sendgrid_event_webhook'),
+    //     'file' => 'sendgrid_event_webhook'
+    // ));
+
+    // Configure::write('SendGrid.logInputData', true);
+

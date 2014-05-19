@@ -84,6 +84,10 @@ class SendGridController extends SendGridAppController {
                 'type',
             );
 
+            if(Configure::read('SendGrid.logInputData')){
+                CakeLog::write('info', $this->request->input(), array('sendgrid_event_webhook'));
+            }
+
             $findUniqueArguments = Configure::read('SendGrid.findUniqueArguments');
             $dataEvents = $this->request->input('json_decode');
 

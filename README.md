@@ -72,6 +72,18 @@ Copy from /app/Plugin/SendGrid/Config/bootstrap.php and add to your /app/Config/
             'field4',
         ));
 
+### Enable Log Event Input Json Data ###
+
+Add Config var to enable the logging of all json data posted by sendgrid
+
+    CakeLog::config('sendgrid_event_webhook', array(
+        'engine' => 'FileLog',
+        'types' => array('info'),
+        'scopes' => array('sendgrid_event_webhook'),
+        'file' => 'sendgrid_event_webhook'
+    ));
+
+    Configure::write('SendGrid.logInputData', true);
 
 ### SendGrid configuration ###
 
