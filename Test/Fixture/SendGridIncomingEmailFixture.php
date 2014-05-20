@@ -1,9 +1,9 @@
 <?php
 /**
- * IncomingEmailFixture
+ * SendGridIncomingEmailFixture
  *
  */
-class IncomingEmailFixture extends CakeTestFixture {
+class SendGridIncomingEmailFixture extends CakeTestFixture {
 
 /**
  * Fields

@@ -9,7 +9,7 @@ class sendGridSchema extends CakeSchema {
         return true;
     }
 
-    public $sendgrid_incoming_emails = array(
+    public $send_grid_incoming_emails = array(
         'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'primary'),
         'headers' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
         'text' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
@@ -32,7 +32,7 @@ class sendGridSchema extends CakeSchema {
         ),
     );
 
-    public $sendgrid_events = array(
+    public $send_grid_events = array(
         'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'primary'),
         'event' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
         'email' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
@@ -55,9 +55,9 @@ class sendGridSchema extends CakeSchema {
         ),
     );
 
-    public $sendgrid_event_categories = array(
+    public $send_grid_event_categories = array(
         'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'primary'),
-        'sendgrid_event_id' => array('type' => 'integer', 'null' => false, 'default' => null),
+        'send_grid_event_id' => array('type' => 'integer', 'null' => false, 'default' => null),
         'category' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
         'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
         'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
@@ -66,9 +66,9 @@ class sendGridSchema extends CakeSchema {
         ),
     );
 
-    public $sendgrid_event_unique_arguments = array(
+    public $send_grid_event_unique_arguments = array(
         'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'primary'),
-        'sendgrid_event_id' => array('type' => 'integer', 'null' => false, 'default' => null),
+        'send_grid_event_id' => array('type' => 'integer', 'null' => false, 'default' => null),
         'name' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
         'value' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
         'created' => array('type' => 'datetime', 'null' => true, 'default' => null),

@@ -8,8 +8,8 @@ class SendGridController extends SendGridAppController {
     public $name = 'SendGrid';
 
     public $uses = array(
-        'SendGrid.IncomingEmail',
-        'SendGrid.Event'
+        'SendGrid.SendGridIncomingEmail',
+        'SendGrid.SendGridEvent'
     );
 
     public $components = array('RequestHandler');
@@ -54,7 +54,7 @@ class SendGridController extends SendGridAppController {
 
             //pr($incomingEmail);
 
-            if(!$this->IncomingEmail->save($incomingEmail)){
+            if(!$this->SendGridIncomingEmail->save($incomingEmail)){
                 throw new NotFoundException(__d('SendGrid', 'Incoming Email not saved!'));
             }
 
@@ -138,7 +138,7 @@ class SendGridController extends SendGridAppController {
                 }
 
                 if(!empty($event)){
-                    if(!$this->Event->saveAll($event)){
+                    if(!$this->SendGridEvent->saveAll($event)){
                         throw new CakeException(__d('SendGrid', 'Events not saved!'));
                     }
                 }

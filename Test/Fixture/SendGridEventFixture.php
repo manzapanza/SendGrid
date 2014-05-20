@@ -1,9 +1,9 @@
 <?php
 /**
- * EventFixture
+ * SendGridEventFixture
  *
  */
-class EventFixture extends CakeTestFixture {
+class SendGridEventFixture extends CakeTestFixture {
 
 /**
  * Fields

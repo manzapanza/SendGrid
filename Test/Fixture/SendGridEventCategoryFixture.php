@@ -1,9 +1,9 @@
 <?php
 /**
- * EventUniqueArgumentFixture
+ * SendGridEventCategoryFixture
  *
  */
-class EventUniqueArgumentFixture extends CakeTestFixture {
+class SendGridEventCategoryFixture extends CakeTestFixture {
 
 /**
  * Fields
@@ -12,9 +12,8 @@ class EventUniqueArgumentFixture extends CakeTestFixture {
  */
 	public $fields = array(
         'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'primary'),
-        'sendgrid_event_id' => array('type' => 'integer', 'null' => false, 'default' => null),
-        'name' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-        'value' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+        'send_grid_event_id' => array('type' => 'integer', 'null' => false, 'default' => null),
+        'category' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
         'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
         'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
         'indexes' => array(
@@ -30,33 +29,29 @@ class EventUniqueArgumentFixture extends CakeTestFixture {
 	public $records = array(
 		array(
 	        'id' => 1,
-	        'sendgrid_event_id' => 1,
-	        'name' => 'field_name_a',
-	        'value' => 'Field Value A',
+	        'send_grid_event_id' => 1,
+	        'category' => 'Category A',
 			'created' => '2014-05-15 18:47:38',
 			'modified' => '2014-05-15 18:47:38'
 		),
 		array(
 	        'id' => 2,
-	        'sendgrid_event_id' => 1,
-	        'name' => 'field_name_b',
-	        'value' => 'Field Value B',
+	        'send_grid_event_id' => 1,
+	        'category' => 'Category B',
 			'created' => '2014-05-15 18:47:38',
 			'modified' => '2014-05-15 18:47:38'
 		),
 		array(
 	        'id' => 3,
-	        'sendgrid_event_id' => 1,
-	        'name' => 'field_name_c',
-	        'value' => 'Field Value C',
+	        'send_grid_event_id' => 2,
+	        'category' => 'Category C',
 			'created' => '2014-05-15 18:47:38',
 			'modified' => '2014-05-15 18:47:38'
 		),
 		array(
 	        'id' => 4,
-	        'sendgrid_event_id' => 2,
-	        'name' => 'field_name_d',
-	        'value' => 'Field Value D',
+	        'send_grid_event_id' => 2,
+	        'category' => 'Category D',
 			'created' => '2014-05-15 18:47:38',
 			'modified' => '2014-05-15 18:47:38'
 		),

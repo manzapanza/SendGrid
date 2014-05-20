@@ -1,11 +1,9 @@
 <?php
 App::uses('SendGridAppModel', 'SendGrid.Model');
 
-class EventCategory extends SendGridAppModel {
+class SendGridEventUniqueArgument extends SendGridAppModel {
 
-    public $name = 'EventCategory';
-
-    public $tablePrefix = 'sendgrid_';
+    public $name = 'SendGridEventUniqueArgument';
 
     /**
     * belongsTo associations
@@ -13,9 +11,9 @@ class EventCategory extends SendGridAppModel {
     * @var array
     */
     public $belongsTo = array(
-        'Event' => array(
-            'className' => 'SendGrid.Event',
-            'foreignKey' => 'sendgrid_event_id',
+        'SendGridEvent' => array(
+            'className' => 'SendGrid.SendGridEvent',
+            'foreignKey' => 'send_grid_event_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
