@@ -4,15 +4,15 @@ class SendGridHelper extends AppHelper {
     public $helpers = array('Html');
 
     public $mapEventIcons = array(
-        'processed' => 'fa fa-gears',
-        'dropped' => 'fa fa-trash-o',
-        'delivered' => 'fa fa-inbox',
-        'deferred' => 'fa fa-thumbs-o-down',
-        'bounce' => 'fa fa-exclamation-triangle',
-        'open' => 'fa fa-folder-open',
-        'click' => 'fa fa-hand-o-up',
-        'spam' => 'fa fa-fire',
-        'unsubscribe' => 'fa fa-chain-broken',
+        'processed' => 'fa fa-lg fa-gears',
+        'dropped' => 'fa fa-lg fa-trash-o',
+        'delivered' => 'fa fa-lg fa-inbox',
+        'deferred' => 'fa fa-lg fa-thumbs-o-down',
+        'bounce' => 'fa fa-lg fa-exclamation-triangle',
+        'open' => 'fa fa-lg fa-folder-open',
+        'click' => 'fa fa-lg fa-hand-o-up',
+        'spam' => 'fa fa-lg fa-fire',
+        'unsubscribe' => 'fa fa-lg fa-chain-broken',
     );
 
     public function showEvents($sendGridEvents){
