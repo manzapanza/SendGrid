@@ -1,7 +1,5 @@
 <?php
 App::uses('SendGridAppController', 'SendGrid.Controller');
-// App::uses('IncomingEmail', 'SendGrid.Model');
-// App::uses('Event', 'SendGrid.Model');
 
 class SendGridController extends SendGridAppController {
 
@@ -33,8 +31,8 @@ class SendGridController extends SendGridAppController {
             // $spam_report = $this->request->data['spam_report'];
             // $attachments = $this->request->data['attachments'];
 
-            $incomingEmail = array(
-                'IncomingEmail' => array(
+            $sendGridIncomingEmail = array(
+                'SendGridIncomingEmail' => array(
                     'headers' => $this->request->data['headers'],
                     'text' => $this->request->data['text'],
                     'html' => $this->request->data['html'],
@@ -52,9 +50,9 @@ class SendGridController extends SendGridAppController {
                 )
             );
 
-            //pr($incomingEmail);
+            //pr($sendGridIncomingEmail);
 
-            if(!$this->SendGridIncomingEmail->save($incomingEmail)){
+            if(!$this->SendGridIncomingEmail->save($sendGridIncomingEmail)){
                 throw new NotFoundException(__d('SendGrid', 'Incoming Email not saved!'));
             }
 
@@ -70,7 +68,7 @@ class SendGridController extends SendGridAppController {
 
         if($this->request->is('post') && $secretKeyString === Configure::read('SendGrid.secretKeyStr') && $this->request->input('json_decode')){
 
-            $eventFields = array(
+            $sendGridEventFields = array(
                 'event',
                 'email',
                 'smtp-id',
@@ -93,60 +91,62 @@ class SendGridController extends SendGridAppController {
 
             foreach ($dataEvents as $dataEvent) {
 
-                $event = array();
-                $eventUniqueArguments = array();
-                $eventCategories = array();
+                $sendGridEvent = array();
+                $sendGridEventUniqueArguments = array();
+                $sendGridEventCategories = array();
 
-                foreach ($eventFields as $field) {
+                foreach ($sendGridEventFields as $field) {
                     if(property_exists($dataEvent, $field)){
-                        $event['Event'][$field] = $dataEvent->$field;
+                        $sendGridEvent['SendGridEvent'][$field] = $dataEvent->$field;
                     }
                 }
 
                 foreach ($findUniqueArguments as $uniqueArgument) {
                     if(property_exists($dataEvent, $uniqueArgument)){
-                        $eventUniqueArguments[] = array(
+                        $sendGridEventUniqueArguments[] = array(
                             'name' => $uniqueArgument,
                             'value' => $dataEvent->$uniqueArgument
                         );
                     }
                 }
 
-                if(count($eventUniqueArguments)){
-                    $event['EventUniqueArgument'] = $eventUniqueArguments;
+                if(count($sendGridEventUniqueArguments)){
+                    $sendGridEvent['SendGridEventUniqueArgument'] = $sendGridEventUniqueArguments;
                 }
 
                 if(property_exists($dataEvent, 'category')){
                     if(is_array($dataEvent->category)){
                         foreach ($dataEvent->category as $category) {
-                            $eventCategories[] = array(
+                            $sendGridEventCategories[] = array(
                                 'category' => $category
                             );
                         }
                     }else{
-                        $eventCategories[] = array(
+                        $sendGridEventCategories[] = array(
                             'category' => $dataEvent->category
                         );
                     }
-                    $event['EventCategory'] = $eventCategories;
+                    $sendGridEvent['SendGridEventCategory'] = $sendGridEventCategories;
                 }
 
                 if(property_exists($dataEvent, 'newsletter')){
-                    $event['Event']['newsletter_user_list_id'] = $dataEvent->newsletter->newsletter_user_list_id;
-                    $event['Event']['newsletter_id'] = $dataEvent->newsletter->newsletter_id;
-                    $event['Event']['newsletter_send_id'] = $dataEvent->newsletter->newsletter_send_id;
+                    $sendGridEvent['SendGridEvent']['newsletter_user_list_id'] = $dataEvent->newsletter->newsletter_user_list_id;
+                    $sendGridEvent['SendGridEvent']['newsletter_id'] = $dataEvent->newsletter->newsletter_id;
+                    $sendGridEvent['SendGridEvent']['newsletter_send_id'] = $dataEvent->newsletter->newsletter_send_id;
                 }
 
-                if(!empty($event)){
-                    if(!$this->SendGridEvent->saveAll($event)){
+                if(!empty($sendGridEvent)){
+                    if(!$this->SendGridEvent->saveAll($sendGridEvent)){
                         throw new CakeException(__d('SendGrid', 'Events not saved!'));
                     }
                 }
+
             }
 
         }else{
             throw new BadRequestException(__d('SendGrid', 'Bad request'));
         }
+
         $this->render(false);
     }
 

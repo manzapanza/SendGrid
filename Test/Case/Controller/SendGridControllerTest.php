@@ -7,10 +7,10 @@ class SendGridControllerTest extends ControllerTestCase {
     public $plugin = 'SendGrid';
 
     public $fixtures = array(
-        'plugin.send_grid.event',
-        'plugin.send_grid.event_category',
-        'plugin.send_grid.event_unique_argument',
-        'plugin.send_grid.incoming_email',
+        'plugin.send_grid.send_grid_event',
+        'plugin.send_grid.send_grid_event_category',
+        'plugin.send_grid.send_grid_event_unique_argument',
+        'plugin.send_grid.send_grid_incoming_email',
     );
 
     public function setUp() {
