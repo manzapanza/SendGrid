@@ -17,11 +17,14 @@ class SendGridHelper extends AppHelper {
 
     public function showEvents($sendGridEvents){
         $out = array();
+        $processed = false;
+        $delivered = false;
         foreach ($sendGridEvents as $sendGridEvent) {
             $title = '';
             switch ($sendGridEvent['SendGridEvent']['event']) {
                 case 'processed':
-                    $title = __d('SendGrid', 'Message has been received and is ready to be delivered.');
+                    $title = !$processed ? __d('SendGrid', 'Message has been received and is ready to be delivered.') : '';
+                    $processed = true;
                     break;
 
                 case 'dropped':
@@ -30,15 +33,15 @@ class SendGridHelper extends AppHelper {
                     break;
 
                 case 'delivered':
-                    $title = __d('SendGrid', 'Message has been successfully delivered to the receiving server.');
-                    $title .= "\nResponse: " . $sendGridEvent['SendGridEvent']['useragent'];
+                    $title = !$delivered ? __d('SendGrid', 'Message has been successfully delivered to the receiving server.') : '';
+                    $title .= !$delivered ? "\nResponse: " . $sendGridEvent['SendGridEvent']['useragent'] : '';
+                    $delivered = true;
                     break;
 
                 case 'deferred':
                     $title = __d('SendGrid', 'Recipient’s email server temporarily rejected message.');
                     $title .= "\nResponse: " . $sendGridEvent['SendGridEvent']['useragent'];
                     $title .= "\nAttempt: " . $sendGridEvent['SendGridEvent']['ip'];
-
                     break;
 
                 case 'bounce':
@@ -73,11 +76,12 @@ class SendGridHelper extends AppHelper {
                     $title .= "\nIp: " . $sendGridEvent['SendGridEvent']['ip'];
                     break;
             }
-
-            $out[] = $this->Html->tag('i', '', array(
-                'class' => $this->mapEventIcons[$sendGridEvent['SendGridEvent']['event']],
-                'title' => $title
-            ));
+            if(!empty($title)){
+                $out[] = $this->Html->tag('i', '', array(
+                    'class' => $this->mapEventIcons[$sendGridEvent['SendGridEvent']['event']],
+                    'title' => $title
+                ));
+            }
         }
 
         return implode('', $out);
